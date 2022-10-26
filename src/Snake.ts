@@ -8,7 +8,7 @@ export class Snake {
   private table: Table;
   private body: Coord[] = [];
   private direction: Direction;
-  private speed: number = 100;
+  private speed: number = 200;
   private lastTick?: Date;
   private live = true;
 
