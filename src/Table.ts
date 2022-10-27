@@ -16,7 +16,7 @@ export class Table {
   constructor() {
     const size = {
       x: Math.floor(this.term.width / 2),
-      y: this.term.height - 2,
+      y: this.term.height - 1,
     };
     this.size = size;
     this.map = (new Array(size.y)).fill([]).map((): number[] => (new Array(size.x)).fill(0));
