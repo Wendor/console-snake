@@ -8,6 +8,7 @@ export class Snake {
   private table: Table;
   private body: Coord[] = [];
   private direction: Direction;
+  private newDirection: Direction;
   private speed: number = 200;
   private lastTick?: Date;
   private live = true;
@@ -15,6 +16,7 @@ export class Snake {
   constructor(table: Table) {
     this.table = table;
     this.direction = rand(4);
+    this.newDirection = this.direction;
 
     const size = this.table.getSize();
     this.body.push({
@@ -39,7 +41,7 @@ export class Snake {
     if (this.direction == Direction.left && direcrtion == Direction.right) return;
     if (this.direction == Direction.right && direcrtion == Direction.left) return;
 
-    this.direction = direcrtion;
+    this.newDirection = direcrtion;
   }
 
   public update() {
@@ -66,6 +68,7 @@ export class Snake {
     const head = this.getHead();
 
     let coord = { ...head };
+    this.direction = this.newDirection;
     if (this.direction == Direction.up) coord.y -= 1;
     if (this.direction == Direction.right) coord.x += 1;
     if (this.direction == Direction.down) coord.y += 1;
