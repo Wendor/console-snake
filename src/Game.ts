@@ -15,6 +15,7 @@ export class Game {
   constructor() {
     this.table = new Table();
     this.snake = new Snake(this.table);
+    process.stdout.on( 'resize' , () => this.restart());
   }
 
   public async run() {
@@ -42,10 +43,14 @@ export class Game {
       if (key.name == 'right') this.snake.setDirection(Direction.right);
       if (key.name == 'down') this.snake.setDirection(Direction.down);
       if (key.name == 'space' && !this.snake.isLive()) {
-        this.table = new Table();
-        this.snake = new Snake(this.table);
+        this.restart();
       }
 
       return;
+  }
+
+  private restart() {
+    this.table = new Table();
+    this.snake = new Snake(this.table);
   }
 }

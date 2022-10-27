@@ -13,7 +13,11 @@ export class Table {
   private size: Coord;
   private score = 0;
 
-  constructor(size: Coord = { x: 16, y: 16 }) {
+  constructor() {
+    const size = {
+      x: Math.floor(this.term.width / 2),
+      y: this.term.height - 2,
+    };
     this.size = size;
     this.map = (new Array(size.y)).fill([]).map((): number[] => (new Array(size.x)).fill(0));
 
@@ -49,7 +53,9 @@ export class Table {
       if (point.type == PointType.food) this.term.bgGreen('  ');
     }
     this.term.moveTo(1, 1 + this.map.length);
-    this.term('fps: ' + this.fps + '    score: ' + this.score);
+    this.term(`score: ${this.score}`.padEnd(12, ' '));
+    this.term.moveTo(this.term.width - 7, 1 + this.map.length);
+    this.term(`fps: ${this.fps}`.padStart(8, ' '));
   }
 
   public getPointType(coord: Coord) {
