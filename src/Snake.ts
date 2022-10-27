@@ -32,6 +32,11 @@ export class Snake {
   }
 
   public setDirection(direcrtion: Direction) {
+    if (this.direction == Direction.up && direcrtion == Direction.down) return;
+    if (this.direction == Direction.down && direcrtion == Direction.up) return;
+    if (this.direction == Direction.left && direcrtion == Direction.right) return;
+    if (this.direction == Direction.right && direcrtion == Direction.left) return;
+
     this.direction = direcrtion;
   }
 

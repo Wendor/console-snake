@@ -18,15 +18,11 @@ export class Game {
     process.stdout.on( 'resize' , () => this.restart());
   }
 
-  public async run() {
+  public run() {
     process.stdin.on('keypress', (str, key) => this.keyHandler(str, key));
     this.interval = setInterval(() => {
-      if (this.snake.isLive()) {
-        this.table.update();
-        this.snake.update();
-      } else {
-        //clearInterval(this.interval);
-      }
+      this.snake.update();
+      this.table.update();
     }, 15);
   }
 
@@ -45,8 +41,6 @@ export class Game {
       if (key.name == 'space' && !this.snake.isLive()) {
         this.restart();
       }
-
-      return;
   }
 
   private restart() {
