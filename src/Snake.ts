@@ -59,6 +59,8 @@ export class Snake {
   }
 
   private tick() {
+    if (!this.live) return;
+
     const head = this.getHead();
 
     let coord = { ...head };
